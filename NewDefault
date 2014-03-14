@@ -1,0 +1,126 @@
+#    http://alexschroeder.ch/text-mapper 
+#    http://www.uploadedit.com/_to-upload-documents-onto-internet-PLAIN-TEXT-TXT-hosting.htm 
+#    http://m.uploadedit.com/b032/1394775168880.txt 
+
+#     http://www.verypdf.com/online/free-online-document-editor.php 
+#     http://online.verypdf.com/u/public/api/20140314-145301-981643553-out.txt
+#     Some text definitions and Two basic empty hexes to build all other hexes 
+ 
+text font-size="20pt" dy="15px" 
+label font-size="20pt" dy="5px" 
+glow stroke="white" stroke-width="5pt" 
+ 
+default attributes fill="none" stroke="black" stroke-width="3" 
+ 
+hex lib <polygon points="-100.0,0.0 -50.0,86.6 50.0,86.6 100.0,0.0 50.0,-86.6 -50.0,-86.6"/> 
+ 
+sand attributes fill="#eedd82" 
+ 
+#     WATER FEATURES, rivers (not streams) end in lakes, bridges end a line. 
+ 
+coast attributes fill="#7fffd4" 
+sea attributes fill="#4169e1" 
+abyss attributes fill="#1F1F7A" 
+ 
+stream path attributes stroke="#7fffd4" stroke-width="10" fill-opacity="0" stroke-linecap="round" 
+ 
+river path attributes stroke="#7fffd4" stroke-width="10" fill-opacity="0" stroke-linecap="round" marker-start="url(#LAKE)" 
+ 
+bridge path attributes stroke="none" fill-opacity="0" marker-end="url(#BRIDGE)" 
+ 
+waterbody lib <path d='M 38,0 c 0,10 -50,25 -49,14 1,-15 -25,-3 -30,-13 -5,-9 15,-18 41,-18 25,0 39,6 39,16 z' /> 
+ 
+bridgebuild lib <path id='right' stroke="black" transform="translate(5,5)" d='M 9,-23 2,-24 -1,-15 -1,8 2,18 9,16 6,10 6,-16 z' /><use transform="scale(-1,1)" x="0.0" y="0.0" xlink:href="#right" /> 
+ 
+lake xml <polyline points="0,0" transform="rotate(90)" style="marker:url(#LAKE)"/> 
+ 
+# nothing new here 
+ 
+road path attributes stroke="black" stroke-width="3" fill-opacity="0" stroke-dasharray="10 10" 
+border path attributes stroke="red" stroke-width="15" stroke-opacity="0.5" fill-opacity="0"     
+ 
+ 
+#     APIARY, because beehive isn't clear enough 
+ 
+apiary xml <polyline points="0,0 173.2,0 -173.2,0 -86.6,-150 +86.6,+150 -86.6,+150 +86.6,-150" style="fill-opacity:0;marker:url(#BEECELL)" transform="translate(60,0) rotate(-30 -60 0) scale(0.1)"/> 
+ 
+#       GRASS (the boring kind) 
+ 
+field attributes fill="#7cfc00" 
+ 
+tuft lib <path d="M -18,-13 C -13,-6 -13,4 -8,12 C -11,14 -15,21 -18,26 C -20,17 -22,4 -28,0 C -26,-4 -21,-9 -18,-13 z M 5,-31 C 4,-19 3,-6 6,5 C 1,10 -0,14 -3,19 C -2,6 -3,-4 -4,-16 C -4,-21 2,-26 5,-31 z M 26,-1 C 16,6 19,5 9,18 C 12,3 21,-8 34,-17 C 32,-12 29,-6 27,-1 z" /> 
+ 
+puddle lib <path d="M2.5 27C37,37 82,27.5 82,27 C 63,34 24,40 3,34 C -26,25 -75,34 -75,34 C -54,27 -17,22 2.5,27 Z"/> 
+ 
+reeds lib <use xlink:href="#hex" fill="#228b22"/><use xlink:href="#tree" fill="#006000"/> 
+ 
+plain xml <use xlink:href="#hex" fill="#7cfc00"/><polyline points="0,0" style="fill-opacity:0;marker:url(#PLAINTUFT)"/> 
+ 
+wetland xml <use xlink:href="#hex" fill="#2e8b57"/><polyline points="0,0" style="fill-opacity:0;marker:url(#WETTUFT)"/> 
+ 
+#    MARKERS are drawn by style="marker:url(#internalID)" on many lines 
+#    they can be put on the start mid end or all.  Seems efficient. 
+ 
+markBEES lib <marker id="BEECELL" viewBox="-110 -110 220 220" markerWidth="220" markerHeight="220" markerUnits="userSpaceOnUse"> <use xlink:href="#hex" fill="yellow" stroke="orange" stroke-width="20" transform="rotate(-30)"/></marker> 
+ 
+markPLAIN lib <marker id="PLAINTUFT" viewBox="-50 -50 100 100" markerWidth="100" markerHeight="100" markerUnits="userSpaceOnUse"> <use xlink:href="#tuft" fill="#458b00"/></marker> 
+ 
+markFOREST lib <marker id="FOREST" viewBox="-50 -50 100 100" markerWidth="100" markerHeight="100" markerUnits="userSpaceOnUse"> <use xlink:href="#tuft" fill="#458b00"/></marker> 
+ 
+markWETLAND lib <marker id="WETTUFT" viewBox="-50 -50 100 100" markerWidth="100" markerHeight="100" markerUnits="userSpaceOnUse"> <use xlink:href="#tuft" fill="#254"/></marker> 
+ 
+markSWAMP lib <marker id="SWAMPTUFT" viewBox="-100 -100 200 200" markerWidth="120" markerHeight="120" markerUnits="userSpaceOnUse"><use xlink:href="#tuft" fill="#450" transform="scale(1.5)"/><use xlink:href="#puddle" fill="#254" transform="scale(4,1.5)"/></marker> 
+ 
+markLAKE lib <marker id="LAKE" viewBox="-50 -50 100 100" markerWidth="100" markerHeight="100" markerUnits="userSpaceOnUse" orient="auto"> <use xlink:href="#waterbody" fill="#7fffd4" transform="rotate(90)" /></marker> 
+ 
+markBRIDGE lib <marker id="BRIDGE" viewBox="-50 -50 100 100" markerWidth="100" markerHeight="100" markerUnits="userSpaceOnUse" orient="auto"> <use xlink:href="#bridgebuild" fill="grey" /></marker> 
+ 
+#       TREES please 
+ 
+tree lib <path d="m -12,-34 c -6,3 -5,3 -7,15 -5,3 -31,1 -28,16 2,9 8,7 16,11 -8,10 -11,16 -9,20 2,4 8,7 21,5 3,13 8,15 13,16 5,1 13,0 19,-11 12,6 26,9 30,6 4,-3 8,-16 3,-28 C 58,9 53,3 53,-2 52,-7 44,-7 32,-11 c 3,-13 4,-13 1,-16 -4,-3 -13,-7 -24,0 -8,-10 -14,-10 -20,-8 z m 3,4 c 4,-1 9,-1 16,8 9,-6 18,-4 22,-1 3,2 1,4 -1,15 11,3 20,5 20,9 C 49,4 53,8 43,13 47,24 44,36 41,39 38,42 22,38 12,33 7,43 1,44 -3,44 -7,43 -14,40 -16,29 -27,30 -32,29 -34,26 c -2,-4 1,-9 8,-18 -9,-5 -20,-4 -13,-18 2,-4 12,-5 23,-5 2,-11 4,-14 8,-15 z" /> 
+ 
+palm lib <path d="m 8,-20 c -6,-12 -36,-5 -44,7 9,-6 35,-12 37,-5 -18,0 -29,6 -33,24 C -22,-13 -8,-14 2,-13 -8,6 -20,13 -16,50 c 4,3 9,-5 5,-8 -1,-7 -1,-13 0,-20 C -10,10 1,-7 9,-12 27,-8 36,0 34,15 44,4 30,-12 14,-15 28,-16 41,-7 45,1 47,-8 29,-19 17,-20 c 11,-7 25,-3 30,3 -5,-14 -36,-11 -39,-3 z"/> 
+ 
+forest xml <use xlink:href="#hex" fill="#228b22"/><use xlink:href="#tree" fill="#006000"/> 
+ 
+woodland xml <use xlink:href="#hex" fill="#9acd32"/><use xlink:href="#tree" fill="#006000"/> 
+ 
+jungle xml <use xlink:href="#hex" fill="#9acd32"/><use xlink:href="#palm" fill="#228b22"/> 
+ 
+tundra xml <use xlink:href="#hex" fill="#9acd32"/><polyline points="-150,0 -125,-124 0,-84 130,0 +180,-120 +125,+124 0,+84 -130,149" transform="scale(0.3)" style="fill-opacity:0;marker:url(#WETTUFT)"/> 
+ 
+swamp xml <use xlink:href="#hex" fill="#6e8b3d"/><polyline points="-150,0 -125,-124 0,-84 130,0 +180,-120 +125,+124 0,+84 -130,149" transform="scale(-0.3,0.3)" style="fill-opacity:0;marker:url(#SWAMPTUFT)"/> 
+ 
+ 
+#     FARM both bushy and wheaty not done yet 
+ 
+farm lib <path d="M -10,8.2 0.5,16 z M -7.1,6 3,14 z m -7,-1 8.5,-9 z m -2.8,-2.7 8,-9 z m -3,-3 8,-9 z m -3,-3 8.7,-9 z M -4.7,3 5.8,11 z M -2,0.4 8.6,8.5 z M 10.6,5 19,-3.7 z M 8,2.5 16,-6.4 z M 4.7,-0 13,-9 z M 1.6,-3.3 10,-12 z" style="stroke-width:2;stroke:gold" transform="translate(0,60) rotate(-0 0 -60) scale(1.5)"/> 
+ 
+#     TALL TERRAIN 
+ 
+hill attributes fill="#daa520" 
+hill path attributes fill="#b8860b" 
+hill path M -42,11 C -38,5 -34,0 -28,-3 C -20,-6 -11,-5 -5,-0 C -2,2 1,6 3,9 C 4,12 2,13 0,14 C -3,9 -7,5 -13,2 C -21,-1 -30,0 -36,6 C -38,9 -40,11 -43,14 C -43,15 -44,14 -44,13 C -43,12 -43,12 -42,11 z M -5,-0 C 0,-6 7,-12 15,-16 C 21,-18 28,-17 33,-14 C 39,-11 41,-5 43,-0 C 42,2 41,5 39,2 C 37,-2 33,-8 27,-10 C 20,-13 12,-12 6,-7 C 2,-4 -1,-1 -4,1 C -7,4 -6,0 -5,-0 z 
+ 
+mountain attributes fill="#708090" 
+mountain path attributes fill="#666666" 
+mountain path M 30,-30 c -5,3 -19,18 -28,28 -4,-5 -7,-10 -9,-16 -7,4 -40,43 -43,53 2,2 4,2 6,2 7,-8 26,-40 34,-46 10,14 26,31 35,49 2,-1 4,-3 5,-3 C 30,33 16,18 3,0 11,-8 21,-19 29,-25 39,-9 49,-3 58,13 60,12 60,11 61,10 61,5 42,-7 29,-30 z 
+ 
+ 
+volcano attributes fill="#C08090" 
+volcano path attributes fill="#A07080" 
+volcano path m 31,-61 c -2,0 -4,1 -6,2 -6,-2 -12,7 -7,13 -2,-5 -1,-14 7,-12 5,-3 12,-5 14,3 0,-4 -3,-7 -7,-6 z m 8,7 c -3,0 -6,2 -8,6 7,-8 17,-4 15,4 5,0 9,5 5,14 4,-6 2,-15 -4,-16 0,-4 -3,-8 -8,-8 z m -5,8 c -3,0 -7,1 -11,3 -8,-5 -27,5 -20,15 C 2,-40 13,-46 23,-41 c 7,-4 22,-9 20,6 3,-9 -2,-12 -8,-12 z m -2,11 c -5,0 -9,2 -10,6 7,-8 19,-6 23,2 14,1 14,11 0,14 18,1 16,-14 2,-15 -2,-4 -9,-7 -15,-7 z m -17,7 C 7,-28 -1,-23 1,-15 3,-27 15,-30 23,-23 c 8,-2 16,3 15,16 3,-10 -3,-20 -14,-18 -2,-2 -6,-3 -9,-3 z m 3,13 C 9,-15 -1,-11 -9,-7 -12,3 -16,17 -30,13 c -8,-2 -7,7 -12,11 -8,6 -10,17 -18,24 4,0 7,-1 10,0 -1,-4 8,-20 14,-27 2,-7 10,-4 15,-4 8,-6 13,-14 18,-21 8,2 16,1 24,2 3,1 6,0 9,-1 -1,8 12,22 16,25 4,6 1,16 6,21 10,-2 5,1 15,0 C 65,35 59,36 56,30 48,20 35,6 34,-7 c 0,0 0,0 0,0 -3e-4,0 3e-4,0 0,0 0,-1 0,-2 0,-3 -4,-3 -10,-5 -16,-5 z m 0,2 c 4,0 8,1 11,3 5,5 0,5 -6,6 C 19,-4 7,-6 -1,-6 -3,-8 8,-13 18,-13 z 
+ 
+fin attributes fill="#d40000" 
+fin path attributes fill="#800000" 
+fin path M 0,-43 C -17,-44 -27,-15 -28,-5 c -6,-9 -14,-14 -22,-7 -7,6 -17,32 -21,39 8,1 4,0 7,0 0,-4 13,-46 30,-36 7,5 15,30 11,36 2,1 3,0 7,0 0,-8 -4,-21 -10,-30 4,-8 7,-23 12,-29 8,-9 29,-21 30,27 -2,1 -4,2 -6,4 -7,5 -17,32 -21,38 8,1 4,1 7,1 0,-5 13,-47 30,-36 8,4 15,29 11,35 3,1 4,1 7,0 0,-8 -4,-20 -9,-30 3,-8 7,-22 12,-28 8,-10 29,-22 29,31 2,0 8,1 6,-1 C 77,6 75,-24 70,-28 48,-47 32,-7 31,5 27,0 23,-4 18,-5 16,-14 14,-35 11,-39 7,-42 3,-43 0,-43 z 
+ 
+house path attributes fill="black" 
+house path M 0,4 C -6,7 -7,22 -6,26 -3,26 4,25 7,26 8,24 6,5 0,4 z M 7,-7 C 10,3 19,14 15,29 8,28 -5,30 -14,29 -13,9 -9,1 7,-7 z M 6,-38 c 7,12 34,23 48,27 -1,6 0,12 1,14 -9,-5 -11,-7 -18,-9 -3,14 0,24 2,33 -9,0 -7,3 -14,3 1,-13 4,-32 5,-39 -9,-4 -17,-11 -26,-17 -8,7 -20,13 -29,20 1,12 0,21 2,33 -7,1 -8,2 -14,4 0,-9 2,-22 1,-31 -7,4 -14,6 -21,8 2,-11 45,-22 64,-46 z 
+ 
+tower path attributes fill="black" 
+tower path m -5.9,-44.7 c -1.7,11.1 -12.4,22.6 -19.9,28.7 l 4.7,2.7 c 1.6,-1.4 4.2,-4.1 5.5,-5.4 12.1,23.9 2.3,48.8 -6.1,63.5 3.8,0.1 5.3,0.6 6.6,1.2 13.9,-31.1 7.2,-58.7 3.4,-66.3 l -2.5,0 c 3.7,-2.6 10.6,-17.9 11.7,-18.1 5.1,7.8 8.3,12.4 14.4,18.5 l -2.9,0.2 C 6,3.4 8.5,30.4 16,46 18.4,45.6 20.7,45.5 22.7,45.8 14.2,24 6.8,1.1 13.4,-18.1 c 0.4,0.5 2.8,1.9 3.2,2.5 4,-2.3 4.5,-1.6 5.9,-2 -5.9,-5.5 -19.6,-16.1 -23,-26.8 0,-0.7 -4.6,-0.2 -5.4,-0.2 z m 0.4,24.8 -4.7,0.1 c 0.7,1.1 2.1,4.3 2.5,5.6 l 3,0 c -0.4,-1.2 -0.4,-4.5 -0.9,-5.7 z m 5.4,-0.1 -3.8,0.3 c 0.8,1.7 0.6,3.8 0.8,5.5 l 3.9,-0.1 c -0.2,-1.7 -0.5,-4.3 -0.9,-5.8 z m 1.8,-0.1 c 0.3,1.8 0.3,3.6 0.5,5.9 l 3.9,-0.2 c 0.1,-1.8 0.3,-3.4 0.5,-5.2 z M 1.4,-5.8 c -0.1,1.5 0.8,5.7 0.5,7 l 2.9,0 c 0.2,-1.4 0.3,-5.8 0.6,-7 z m -6.4,5 c 0.1,1.6 0.1,5.1 0,6.6 l 4.3,0 c 0,-1.5 -0.1,-5.2 0,-6.6 z M 0.9,9.9 C 1.1,11.2 1.5,14.8 1.5,16.2 L 5.5,16 C 5.4,14.6 5,11.1 5.1,9.7 z M -4.6,14.5 c 0.1,0.8 -0.3,4.5 -0.4,5.2 l 4.1,0.2 c 0.1,-0.8 0.4,-4.5 0.5,-5.3 z m 5.7,9.9 c 0.2,1.4 0.7,5.1 0.8,6.4 l 6.2,0.2 C 7.9,30.4 6,27.3 5.6,24.6 z m -8.6,7.8 c 3,-0.7 3.4,-0.2 6.2,-0.4 0,-0.5 0.3,-5.6 0.3,-6.1 -2.4,-0.3 -2.5,0.2 -5.1,-0.2 0.1,3 -0.9,5 -1.4,6.7 z m 6.6,3.9 C -3.5,36.8 -6.2,44.1 -6.5,46.3 -3.4,45.8 4.7,45.9 6.2,45.7 6.2,40.8 3.2,34.9 -1,36.1 z 
+ 
+pyramid path attributes fill="black" 
+pyramid path m -1,-43 c -22,23 -46,49 -65,70 45,0 90,0 129,0 C 41,2 18,-22 -1,-43 z m 0,6 20,22 -22,0 0,-5 5,0 0,-3 -11,0 0,3 3,0 0,5 -4,0 0,3 23,0 0,4 -11,0 0,3 18,0 0,-3 -4,0 0,-4 5,0 32,35 -109,0 z m 32,40 -57,0 0,3 9,0 0,3 -17,0 0,3 29,0 0,-3 -9,0 0,-3 45,0 z 
+ 
